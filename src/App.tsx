@@ -5,12 +5,10 @@ import {
   ErrorMessage,
   Loader,
   Logo,
-  // Movie,
   MovieList,
   NavBar,
   NumResults,
   Search,
-  // WatchedMovie,
   WatchedMoviesList,
   WatchedSummary,
 } from "./components";
