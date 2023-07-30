@@ -12,6 +12,7 @@ import StarRating from "./StarRating";
 import WatchedMovie from "./WatchedMovie";
 import WatchedMoviesList from "./WatchedMoviesList";
 import WatchedSummary from "./WatchedSummary";
+import MovieDetails from "./MovieDetails";
 
 export {
   Main,
@@ -28,4 +29,5 @@ export {
   WatchedMovie,
   WatchedMoviesList,
   WatchedSummary,
+  MovieDetails,
 };
