@@ -13,8 +13,7 @@ import {
   WatchedSummary,
   MovieDetails,
 } from "./components";
-
-const KEY = "22a9166f";
+export const KEY = "22a9166f";
 
 export default function App() {
   const [query, setQuery] = useState("");
@@ -25,7 +24,11 @@ export default function App() {
   const [selectedId, setSelectedId] = useState("tt1375666");
 
   function handleSelectMovie(id) {
-    setSelectedId(id);
+    setSelectedId((selectedId) => (id === selectedId ? null : id));
+  }
+
+  function handleCloseMovie() {
+    setSelectedId(null);
   }
 
   useEffect(
@@ -75,7 +78,10 @@ export default function App() {
         </Box>
         <Box>
           {selectedId ? (
-            <MovieDetails selectedId={selectedId} />
+            <MovieDetails
+              selectedId={selectedId}
+              onCloseMovie={handleCloseMovie}
+            />
           ) : (
             <>
               <WatchedSummary watched={watched} />
