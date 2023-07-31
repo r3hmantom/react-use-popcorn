@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Loader } from ".";
 import { StarRating } from ".";
-export const KEY = "22a9166f";
+
+const KEY = import.meta.env.VITE_OMDBI_KEY;
 
 const MovieDetails = ({ selectedId, onCloseMovie }) => {
   const [movie, setMovie] = useState({});

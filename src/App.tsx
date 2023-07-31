@@ -13,7 +13,9 @@ import {
   WatchedSummary,
   MovieDetails,
 } from "./components";
-export const KEY = "22a9166f";
+
+// for Vite  applications
+const KEY = import.meta.env.VITE_OMDBI_KEY;
 
 export default function App() {
   const [query, setQuery] = useState("");
