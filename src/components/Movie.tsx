@@ -15,9 +15,10 @@ interface MovieProps {
 }
 
 const Movie: React.FC<MovieProps> = ({ movie, onSelectMovie }) => {
+  const posterAlt = movie.Poster === "N/A" ? "🚫" : `${movie.Title} poster`;
   return (
     <li onClick={() => onSelectMovie(movie.imdbID)}>
-      <img src={movie.Poster} alt={`${movie.Title} poster`} />
+      <img src={movie.Poster} alt={posterAlt} />
       <h3>{movie.Title}</h3>
       <div>
         <p>

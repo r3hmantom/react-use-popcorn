@@ -76,6 +76,15 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({
     getMovieDetails();
   }, [selectedId]);
 
+  useEffect(() => {
+    if (!title) return;
+    document.title = `Movie | ${title}`;
+
+    return function () {
+      document.title = "usePopcorn";
+    };
+  }, [title]);
+
   function handleAdd() {
     const newWatchedMovie: WatchedMovie = {
       imdbID: selectedId,
