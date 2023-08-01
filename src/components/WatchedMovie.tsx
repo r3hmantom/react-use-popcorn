@@ -1,6 +1,25 @@
+// WatchedMovie.tsx
 import React from "react";
 
-const WatchedMovie = ({ movie, onDeleteWatched }) => {
+// Define the TypeScript types or interfaces
+interface WatchedMovie {
+  imdbID: string;
+  poster: string;
+  title: string;
+  imdbRating: number;
+  userRating: number;
+  runtime: number;
+}
+
+interface WatchedMovieProps {
+  movie: WatchedMovie;
+  onDeleteWatched: (imdbID: string) => void;
+}
+
+const WatchedMovie: React.FC<WatchedMovieProps> = ({
+  movie,
+  onDeleteWatched,
+}) => {
   return (
     <li>
       <img src={movie.poster} alt={`${movie.title} poster`} />

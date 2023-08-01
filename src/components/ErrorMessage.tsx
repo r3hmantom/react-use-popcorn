@@ -1,6 +1,7 @@
 import React from "react";
+import { ErrorMessageProps } from "../types";
 
-const ErrorMessage = ({ message }) => {
+const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => {
   return (
     <p className="error">
       <span>🚩</span>

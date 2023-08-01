@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Main,
   Box,
@@ -14,32 +14,48 @@ import {
   MovieDetails,
 } from "./components";
 
-// for Vite  applications
-const KEY = import.meta.env.VITE_OMDBI_KEY;
+// for Vite applications
+const KEY: string = import.meta.env.VITE_OMDBI_KEY;
+
+interface Movie {
+  imdbID: string;
+  Title: string;
+  Year: string;
+  Poster: string;
+}
+
+interface WatchedMovie extends Movie {
+  imdbRating: number;
+  runtime: number;
+  userRating: number;
+}
 
 export default function App() {
-  const [query, setQuery] = useState("");
-  const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [selectedId, setSelectedId] = useState("tt1375666");
+  const [query, setQuery] = useState<string>("");
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [watched, setWatched] = useState<WatchedMovie[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
+  const [selectedId, setSelectedId] = useState<string | null>("tt1375666");
 
-  function handleSelectMovie(id) {
-    setSelectedId((selectedId) => (id === selectedId ? null : id));
+  function handleSelectMovie(id: string) {
+    setSelectedId((prevId) => (id === prevId ? null : id));
   }
 
   function handleCloseMovie() {
     setSelectedId(null);
   }
 
-  function handleAddWatched(movie) {
-    setWatched((watched) => [...watched, movie]);
+  function handleAddWatched(movie: WatchedMovie) {
+    setWatched((prevWatched) => [...prevWatched, movie]);
   }
 
-  function handleDeleteWatched(id) {
-    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
+  function handleDeleteWatched(id: string) {
+    setWatched((prevWatched) =>
+      prevWatched.filter((movie) => movie.imdbID !== id)
+    );
   }
+
   useEffect(
     function () {
       async function fetchMovies() {
@@ -55,7 +71,7 @@ export default function App() {
           if (data.Response === "False") throw new Error("Movie not found");
 
           setMovies(data.Search);
-        } catch (error) {
+        } catch (error: any) {
           setError(error.message);
         } finally {
           setIsLoading(false);
@@ -70,6 +86,7 @@ export default function App() {
     },
     [query]
   );
+
   return (
     <>
       <NavBar>

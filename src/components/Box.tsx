@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { BoxProps } from "../types";
 
-const Box = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(true);
+const Box: React.FC<BoxProps> = ({ children }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(true);
 
   return (
     <div className="box">

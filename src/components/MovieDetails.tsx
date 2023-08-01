@@ -1,17 +1,53 @@
 import React, { useEffect, useState } from "react";
-import { Loader } from ".";
-import { StarRating } from ".";
+import { Loader, StarRating } from "."; // Replace "." with the correct path to the components.
 
-const KEY = import.meta.env.VITE_OMDBI_KEY;
+const KEY: string = import.meta.env.VITE_OMDBI_KEY;
 
-const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
-  const [movie, setMovie] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [userRating, setUserRating] = useState("");
+interface MovieDetailsProps {
+  selectedId: string;
+  onCloseMovie: () => void;
+  onAddWatched: (movie: WatchedMovie) => void;
+  watched: WatchedMovie[];
+}
 
-  const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
-  const watchedUserRating = watched.find(
-    (movie) => movie.imdbID == selectedId
+interface Movie {
+  Title: string;
+  Year: string;
+  Poster: string;
+  Runtime: string;
+  imdbRating: string;
+  Plot: string;
+  Released: string;
+  Actors: string;
+  Director: string;
+  Genre: string;
+}
+
+interface WatchedMovie {
+  imdbID: string;
+  title: string;
+  year: string;
+  poster: string;
+  imdbRating: number;
+  runtime: number;
+  userRating: number;
+}
+
+const MovieDetails: React.FC<MovieDetailsProps> = ({
+  selectedId,
+  onCloseMovie,
+  onAddWatched,
+  watched,
+}) => {
+  const [movie, setMovie] = useState<Movie>({});
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [userRating, setUserRating] = useState<number | string>("");
+
+  const isWatched: boolean = watched
+    .map((movie) => movie.imdbID)
+    .includes(selectedId);
+  const watchedUserRating: number | undefined = watched.find(
+    (movie) => movie.imdbID === selectedId
   )?.userRating;
 
   const {
@@ -26,35 +62,34 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
     Director: directors,
     Genre: genre,
   } = movie;
-  useEffect(
-    function () {
-      setIsLoading(true);
-      async function getMovieDetails() {
-        const res = await fetch(
-          `http://www.omdbapi.com/?i=${selectedId}&apikey=${KEY}`
-        );
-        const data = await res.json();
-        setMovie(data);
-        setIsLoading(false);
-      }
-      getMovieDetails();
-    },
-    [selectedId]
-  );
+
+  useEffect(() => {
+    setIsLoading(true);
+    async function getMovieDetails() {
+      const res = await fetch(
+        `http://www.omdbapi.com/?i=${selectedId}&apikey=${KEY}`
+      );
+      const data: Movie = await res.json();
+      setMovie(data);
+      setIsLoading(false);
+    }
+    getMovieDetails();
+  }, [selectedId]);
 
   function handleAdd() {
-    const newWatchedMovie = {
+    const newWatchedMovie: WatchedMovie = {
       imdbID: selectedId,
       title,
       year,
       poster,
       imdbRating: Number(imdbRating),
-      runtime: Number(runtime?.split(" ").at(0)),
-      userRating,
+      runtime: Number(runtime?.split(" ")[0]),
+      userRating: Number(userRating),
     };
     onAddWatched(newWatchedMovie);
     onCloseMovie();
   }
+
   return (
     <div className="details">
       {!isLoading && (
@@ -85,9 +120,9 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
                   <StarRating
                     maxRating={10}
                     size={24}
-                    onSetRating={setUserRating}
+                    onSetRating={(rating: number) => setUserRating(rating)}
                   />
-                  {userRating > 0 && (
+                  {Number(userRating) > 0 && (
                     <button className="btn-add" onClick={handleAdd}>
                       +Add to list
                     </button>
