@@ -36,7 +36,7 @@ export default function App() {
   const [watched, setWatched] = useState<WatchedMovie[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
-  const [selectedId, setSelectedId] = useState<string | null>("tt1375666");
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
   function handleSelectMovie(id: string) {
     setSelectedId((prevId) => (id === prevId ? null : id));

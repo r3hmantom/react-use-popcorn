@@ -39,7 +39,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({
   onAddWatched,
   watched,
 }) => {
-  const [movie, setMovie] = useState<Movie>({});
+  const [movie, setMovie] = useState<Movie | any | null>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [userRating, setUserRating] = useState<number | string>("");
 
