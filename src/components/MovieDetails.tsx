@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Loader, StarRating } from "."; // Replace "." with the correct path to the components.
 
-// const KEY: string = import.meta.env.VITE_OMDBI_KEY;
+const KEY: string = import.meta.env.VITE_OMDBI_KEY;
 
 interface MovieDetailsProps {
   selectedId: string;
@@ -67,7 +67,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({
     setIsLoading(true);
     async function getMovieDetails() {
       const res = await fetch(
-        `http://www.omdbapi.com/?i=${selectedId}&apikey=22a9166f`
+        `http://www.omdbapi.com/?i=${selectedId}&apikey=${KEY}`
       );
       const data: Movie = await res.json();
       setMovie(data);
