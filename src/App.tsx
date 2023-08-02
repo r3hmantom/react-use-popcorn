@@ -15,7 +15,7 @@ import {
 } from "./components";
 
 // for Vite applications
-const KEY: string = import.meta.env.VITE_OMDBI_KEY;
+// const KEY: string = import.meta.env.VITE_OMDBI_KEY;
 
 interface Movie {
   imdbID: string;
@@ -64,7 +64,7 @@ export default function App() {
           setError("");
           setIsLoading(true);
           const res = await fetch(
-            `https://www.omdbapi.com/?s=${query}&apikey=${KEY}`,
+            `https://www.omdbapi.com/?s=${query}&apikey=22a9166f2`,
             { signal: controller.signal }
           );
           const data = await res.json();
