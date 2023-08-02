@@ -85,6 +85,21 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({
     };
   }, [title]);
 
+  useEffect(
+    function () {
+      function callback(e: { code: string }) {
+        if (e.code === "Escape") {
+          onCloseMovie();
+        }
+      }
+      document.addEventListener("keydown", callback);
+      return function () {
+        document.removeEventListener("keydown", callback);
+      };
+    },
+    [onCloseMovie]
+  );
+
   function handleAdd() {
     const newWatchedMovie: WatchedMovie = {
       imdbID: selectedId,
