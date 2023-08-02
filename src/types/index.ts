@@ -17,14 +17,14 @@ export interface NavBarProps {
 }
 // Movie.tsx
 
-interface MovieData {
+export interface MovieData {
   imdbID: string;
   Poster: string;
   Title: string;
   Year: string;
 }
 
-interface MovieProps {
+export interface MovieProps {
   movie: MovieData;
   onSelectMovie: (imdbID: string) => void;
 }
@@ -33,19 +33,19 @@ interface MovieProps {
 
 // MovieDetails.tsx
 
-interface MovieDetailsProps {
+export interface MovieDetailsProps {
   selectedId: string;
   onCloseMovie: () => void;
   onAddWatched: (movie: WatchedMovie) => void;
   watched: WatchedMovie[];
 }
 
-interface Movie {
+export interface Movie {
   Title: string;
   Year: string;
   Poster: string;
   Runtime: string;
-  imdbRating: string;
+  imdbRating: number;
   Plot: string;
   Released: string;
   Actors: string;
@@ -53,7 +53,7 @@ interface Movie {
   Genre: string;
 }
 
-interface WatchedMovie {
+export interface WatchedMovie {
   imdbID: string;
   title: string;
   year: string;
@@ -65,7 +65,7 @@ interface WatchedMovie {
 
 // MovieList.tsx
 
-interface MovieListProps {
+export interface MovieListProps {
   movies: MovieData[];
   onSelectMovie: (imdbID: string) => void;
 }
@@ -74,18 +74,18 @@ interface MovieListProps {
 
 // NumResults.tsx
 
-interface NumResultsProps {
+export interface NumResultsProps {
   movies: MovieData[]; // Assuming MovieData is the type/interface for the movie object
 }
 
-interface SearchProps {
+export interface SearchProps {
   query: string;
   setQuery: (value: string) => void;
 }
 
 // WatchedMovie.tsx
 
-interface WatchedMovie {
+export interface WatchedMovie {
   imdbID: string;
   poster: string;
   title: string;
@@ -94,14 +94,14 @@ interface WatchedMovie {
   runtime: number;
 }
 
-interface WatchedMovieProps {
+export interface WatchedMovieProps {
   movie: WatchedMovie;
   onDeleteWatched: (imdbID: string) => void;
 }
 
 // WatchedMoviesList.tsx
 
-interface WatchedMovieProps {
+export interface WatchedMovieProps {
   imdbID: string;
   title: string;
   year: string;
@@ -111,26 +111,26 @@ interface WatchedMovieProps {
   userRating: number;
 }
 
-interface WatchedMoviesListProps {
+export interface WatchedMoviesListProps {
   watched: WatchedMovieProps[];
   onDeleteWatched: (imdbID: string) => void;
 }
 
 // WatchedSummary.tsx
 
-interface Movie {
+export interface Movie {
   imdbRating: number;
   userRating: number;
   runtime: number;
 }
 
-interface WatchedSummaryProps {
-  watched: Movie[];
+export interface WatchedSummaryProps {
+  watched: Movie[] | any;
 }
 
 // StarRating.tsx
 
-interface StarProps {
+export interface StarProps {
   onRate: () => void;
   full: boolean;
   onHoverIn: () => void;
@@ -139,7 +139,7 @@ interface StarProps {
   size: number;
 }
 
-interface StarRatingProps {
+export interface StarRatingProps {
   maxRating?: number;
   color?: string;
   size?: number;
