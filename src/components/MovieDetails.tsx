@@ -6,8 +6,8 @@ const KEY: string = import.meta.env.VITE_OMDBI_KEY;
 interface MovieDetailsProps {
   selectedId: string;
   onCloseMovie: () => void;
-  onAddWatched: (movie: WatchedMovie) => void;
-  watched: WatchedMovie[];
+  onAddWatched: any;
+  watched: any;
 }
 
 interface Movie {
@@ -44,10 +44,10 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({
   const [userRating, setUserRating] = useState<number | string>("");
 
   const isWatched: boolean = watched
-    .map((movie) => movie.imdbID)
+    .map((movie: any) => movie.imdbID)
     .includes(selectedId);
   const watchedUserRating: number | undefined = watched.find(
-    (movie) => movie.imdbID === selectedId
+    (movie: any) => movie.imdbID === selectedId
   )?.userRating;
 
   const {

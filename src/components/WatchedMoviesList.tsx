@@ -14,7 +14,7 @@ interface WatchedMovieProps {
 }
 
 interface WatchedMoviesListProps {
-  watched: WatchedMovieProps[];
+  watched: WatchedMovieProps[] | any;
   onDeleteWatched: (imdbID: string) => void;
 }
 
@@ -24,7 +24,7 @@ const WatchedMoviesList: React.FC<WatchedMoviesListProps> = ({
 }) => {
   return (
     <ul className="list">
-      {watched.map((movie) => (
+      {watched.map((movie: any) => (
         <WatchedMovie
           onDeleteWatched={onDeleteWatched}
           movie={movie}
