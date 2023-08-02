@@ -25,15 +25,15 @@ const WatchedSummary: React.FC<WatchedSummaryProps> = ({ watched }) => {
         </p>
         <p>
           <span>⭐️</span>
-          <span>{avgImdbRating.toFixed(2)}</span>
+          <span>{isNaN(avgImdbRating) ? 0 : avgImdbRating.toFixed(2)}</span>
         </p>
         <p>
           <span>🌟</span>
-          <span>{avgUserRating.toFixed(2)}</span>
+          <span>{isNaN(avgUserRating) ? 0 : avgUserRating.toFixed(2)}</span>
         </p>
         <p>
           <span>⏳</span>
-          <span>{avgRuntime.toFixed(0)} min</span>
+          <span>{isNaN(avgRuntime) ? 0 : avgRuntime.toFixed(0)} min</span>
         </p>
       </div>
     </div>
