@@ -33,7 +33,10 @@ interface WatchedMovie extends Movie {
 export default function App() {
   const [query, setQuery] = useState<string>("");
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [watched, setWatched] = useState<WatchedMovie[]>([]);
+  const [watched, setWatched] = useState<WatchedMovie[]>(() => {
+    const watched = JSON.parse(String(localStorage.getItem("watched"))) || [];
+    return watched;
+  });
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -49,7 +52,7 @@ export default function App() {
   function handleAddWatched(movie: WatchedMovie) {
     setWatched((prevWatched) => [...prevWatched, movie]);
     // Adding watched movies to local storage
-    localStorage.setItem("watched", JSON.stringify([...watched, movie]));
+    // localStorage.setItem("watched", JSON.stringify([...watched, movie]));
   }
 
   function handleDeleteWatched(id: string) {
@@ -57,6 +60,9 @@ export default function App() {
       prevWatched.filter((movie) => movie.imdbID !== id)
     );
   }
+  useEffect(() => {
+    localStorage.setItem("watched", JSON.stringify(watched));
+  }, [watched]);
 
   useEffect(
     function () {
