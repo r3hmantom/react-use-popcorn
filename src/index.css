@@ -481,7 +481,20 @@ EMPTY STAR
   }
   .summary {
     margin-top: -24px;
+    padding-inline: 10px;
   }
+  .summary h2 {
+    margin-bottom: 20px;
+  }
+  .summary div p {
+    font-size: 1.3rem;
+  }
+
+  .list li {
+    font-size: 1.2rem;
+    padding-inline: 2rem;
+  }
+
   .details {
     margin-top: -23px;
   }
