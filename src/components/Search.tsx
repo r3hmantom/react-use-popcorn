@@ -7,14 +7,21 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ query, setQuery }) => {
   const inputEl = useRef<HTMLInputElement | null>(null);
-  useEffect(() => {
-    function callback(e: { code: string }) {
-      if (e.code === "Enter") inputEl.current?.focus();
-    }
-    document.addEventListener("keydown", callback);
 
-    return () => document.removeEventListener("keydown", callback);
+  useEffect(() => {
+    function handleKeyPress(event: { code: string }) {
+      if (event.code === "Enter") {
+        inputEl.current?.focus();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
   }, []);
+
   return (
     <input
       ref={inputEl}
