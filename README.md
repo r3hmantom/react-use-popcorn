@@ -1,10 +1,13 @@
 # usePopcorn - Movie Rating App
 
-usePopcorn is a web application built using React, TypeScript, and Vite, allowing users to search for movies, rate them from 1 through 10, and manage their watched movies. The app fetches movie data using the OMDB API (https://www.omdbapi.com/) and stores watched movies in the local storage of the user's browser. This project was inspired and designed by Jonas Schmedtmann.
+usePopcorn is a web application built using React, TypeScript, and Vite, allowing users to search for movies, rate them from 1 through 10, and manage their watched movies. The app fetches movie data using the [OMDB API](https://www.omdbapi.com/) and stores watched movies in the local storage of the user's browser. This project was inspired and designed by Jonas Schmedtmann.
 
 ## Live Demo
 
 Check out the live demo of usePopcorn: [usePopcorn Live Demo](https://r3-react-use-popcorn.netlify.app/)
+
+![usepopcorn](https://github.com/r3hmantom/react-use-popcorn/assets/96996019/548b1d51-7160-4bd5-bec7-4ab2fc5c5f2d)
+
 
 ## Features
 
