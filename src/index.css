@@ -506,6 +506,10 @@ EMPTY STAR
     margin-top: 0;
   }
 
+  .loader:last-child {
+    margin-top: -10px;
+  }
+
   .error {
     padding-top: 3rem;
   }
