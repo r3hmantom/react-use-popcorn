@@ -499,15 +499,23 @@ EMPTY STAR
   .details {
     margin-top: -23px;
   }
+  @keyframes spin {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
 
   .loader {
     height: 65px;
     width: 65px;
     margin-top: 0;
-  }
-
-  .loader:last-child {
-    margin-top: -10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .error {
