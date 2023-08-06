@@ -32,13 +32,12 @@ export function useMovies(query: string, callback: () => void) {
           if (data.Response === "False") throw new Error("Movie not found");
 
           setMovies(data.Search);
+          setIsLoading(false);
           setError("");
         } catch (error: any) {
           if (error.name !== "AbortError") {
             setError(error.message);
           }
-        } finally {
-          setIsLoading(false);
         }
       }
       if (query.length < 3) {
