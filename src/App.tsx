@@ -61,7 +61,7 @@ export default function App() {
       </NavBar>
       <Main>
         <Box>
-          {isLoading && <Loader />}
+          {isLoading && !error && <Loader />}
           {!isLoading && !error && (
             <MovieList onSelectMovie={handleSelectMovie} movies={movies} />
           )}
