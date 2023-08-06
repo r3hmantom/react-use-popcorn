@@ -15,9 +15,6 @@ import {
 } from "./components";
 import { useMovies } from "./hooks/useMovies";
 import { useLocalStorageState } from "./hooks/useLocalStorageState";
-
-// for Vite applications
-
 interface Movie {
   imdbID: string;
   Title: string;
@@ -35,7 +32,6 @@ export default function App() {
   const [query, setQuery] = useState<string>("");
   const [watched, setWatched] = useLocalStorageState([], "watched");
   const [selectedId, setSelectedId] = useState<string | null>(null);
-
   const { isLoading, error, movies } = useMovies(query, handleCloseMovie);
 
   function handleSelectMovie(id: string) {
@@ -48,8 +44,6 @@ export default function App() {
 
   function handleAddWatched(movie: WatchedMovie) {
     setWatched((prevWatched) => [...prevWatched, movie]);
-    // Adding watched movies to local storage
-    // localStorage.setItem("watched", JSON.stringify([...watched, movie]));
   }
 
   function handleDeleteWatched(id: string) {

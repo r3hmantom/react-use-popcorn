@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Loader, StarRating } from "."; // Replace "." with the correct path to the components.
+import { useKey } from "../hooks/useKey";
 
 const KEY: string = import.meta.env.VITE_OMDBI_KEY;
 
@@ -85,20 +86,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({
     };
   }, [title]);
 
-  useEffect(
-    function () {
-      function callback(e: { code: string }) {
-        if (e.code === "Escape") {
-          onCloseMovie();
-        }
-      }
-      document.addEventListener("keydown", callback);
-      return function () {
-        document.removeEventListener("keydown", callback);
-      };
-    },
-    [onCloseMovie]
-  );
+  useKey("Escape", onCloseMovie);
 
   function handleAdd() {
     const newWatchedMovie: WatchedMovie = {
