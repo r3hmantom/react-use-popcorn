@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Main,
   Box,
@@ -14,6 +14,7 @@ import {
   MovieDetails,
 } from "./components";
 import { useMovies } from "./hooks/useMovies";
+import { useLocalStorageState } from "./hooks/useLocalStorageState";
 
 // for Vite applications
 
@@ -32,10 +33,7 @@ interface WatchedMovie extends Movie {
 
 export default function App() {
   const [query, setQuery] = useState<string>("");
-  const [watched, setWatched] = useState<WatchedMovie[]>(() => {
-    const watched = JSON.parse(String(localStorage.getItem("watched"))) || [];
-    return watched;
-  });
+  const [watched, setWatched] = useLocalStorageState([], "watched");
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const { isLoading, error, movies } = useMovies(query, handleCloseMovie);
@@ -59,9 +57,6 @@ export default function App() {
       prevWatched.filter((movie) => movie.imdbID !== id)
     );
   }
-  useEffect(() => {
-    localStorage.setItem("watched", JSON.stringify(watched));
-  }, [watched]);
 
   return (
     <>
