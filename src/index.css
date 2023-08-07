@@ -447,6 +447,7 @@ EMPTY STAR
 
   .rating {
     padding: 1rem;
+    width: 100%;
     margin-inline: auto;
     margin-bottom: 0.8rem;
     display: flex;
@@ -472,7 +473,7 @@ EMPTY STAR
   }
   .summary {
     margin-top: -24px;
-    padding-inline: 10px;
+    padding-inline: 2rem;
   }
   .summary h2 {
     margin-bottom: 20px;
